@@ -5,7 +5,7 @@ module Hw3 where
 
 	cold, hot, good :: OatmealTemp
 	cold = 0
-	hot = 20
+	hot  = 20
 	good = 10
 
 	-- Problem B
@@ -16,7 +16,7 @@ module Hw3 where
 	advice temp
 			| temp > good = ToLeft
 			| temp < good = ToRight
-			| otherwise = Stay
+			| otherwise   = Stay
 
 	---------------------------------------------------------Task2--------------------------------------------------
 	-- Problem A
