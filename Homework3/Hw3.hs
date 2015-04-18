@@ -1,32 +1,39 @@
 module Hw3 where
-	----------------------------------------------------------Task1-------------------------------------------------
-	-- Problem A
-	type OatmealTemp = Int
 
-	cold, hot, good :: OatmealTemp
-	cold = 0
-	hot  = 20
-	good = 10
+	-- factorial function, tail recursion
+	factorial :: Integer -> Integer
+	-- interp. factorial function
 
-	-- Problem B
-	data Adjustment = ToRight | ToLeft | Stay deriving (Show, Eq)
+	factorial 0 = 1
+	factorial n = let go k x = 
+						if k > 1 then 
+							go (k - 1) (x * k)
+						else
+							x
+				  in go n 1
 
-	-- Problem C
-	advice :: OatmealTemp -> Adjustment
-	advice temp
-			| temp > good = ToLeft
-			| temp < good = ToRight
-			| otherwise   = Stay
+	-- fibonacci function, tail recursion
+	fibonacci :: Integer -> Integer
+	-- interp. fibonacci function
 
-	---------------------------------------------------------Task2--------------------------------------------------
-	-- Problem A
-	data DinnerOrder = Chicken | Pasta | Non
+	fibonacci 0 = 1
+	fibonacci 1 = 1
+	fibonacci n = let go n k a b = if n == k then
+									b 
+								   else if k == (n - 1) then
+								 	a
+								   else
+								   	go n (k + 1) b (a + b)
+				  in go n (-1) 0 1  
 
-	-- Problem B
-	dinner_order_to_msg :: DinnerOrder -> String
-	dinner_order_to_msg d = case d of
-							Chicken -> "Passenger has ordered chicken!"
-							Pasta   -> "Passenger has ordered pasta!"
-							Non     -> "Passenger has nothing ordered!"
-							
+	-- Newton's binom function, tail recursion
+	binom :: Double -> Double -> Integer -> Double
+	binom a b n = let go a b n k s = if (k == n) then
+										s + b^n
+									   else
+									   	go a b n (k + 1) (s + (bink n k) * a^(n-k) * b^k)
+				  in go a b n 0 0.0
 
+	-- binomial coeff.
+	bink :: Integer -> Integer -> Double
+	bink n k = fromIntegral (factorial n)/ fromIntegral ((factorial k) * (factorial (n - k)))
